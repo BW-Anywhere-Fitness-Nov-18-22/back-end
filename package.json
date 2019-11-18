@@ -1,20 +1,39 @@
 {
-  "name": "back-end",
+  "name": "anywherefitnessbackend",
   "version": "1.0.0",
-  "description": "This repository will hold source codes for the back end script. Alternatively deployed to Heroku",
+  "description": "to be fixed later",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "fitness",
+    "buildweek",
+    "anywhere"
+  ],
+  "author": "Oladimeji Lawal-Are, David Kuseh, Sandrava Philips, Oluwatola Olufemi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end/issues"
   },
-  "homepage": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end#readme"
+  "homepage": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.2",
+    "pg": "^7.12.1",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
 }
