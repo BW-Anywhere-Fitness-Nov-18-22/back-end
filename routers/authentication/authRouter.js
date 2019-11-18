@@ -18,3 +18,5 @@ router.post('/register', async(req, res) => {
         res.status(500).json({errorMessage: error.message});
     }
 })
+
+module.exports = router;
