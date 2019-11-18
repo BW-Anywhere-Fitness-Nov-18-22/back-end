@@ -1,0 +1,20 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "This repository will hold source codes for the back end script. Alternatively deployed to Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end/issues"
+  },
+  "homepage": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end#readme"
+}
