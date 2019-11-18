@@ -9,7 +9,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.get('/', (req,res) => {
+server.get('/', (req, res) => {
     res.json('Api works')
 })
 
