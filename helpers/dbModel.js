@@ -4,6 +4,7 @@ module.exports = {
     addUser,
     findUserBy,
     addClass,
+    findClass,
     findClassByInstructorId,
     editClass,
     removeClass,
@@ -40,7 +41,11 @@ function addClass(userClass) {
 
 function findClassByInstructorId(id) {
     return db('classes')
-        .where(id)
+        .where({instructorId: id})
+}
+
+function findClass(){
+    return db('classes')
 }
 
 async function editClass(id, changes) {
@@ -67,7 +72,7 @@ function findClassesByUserid(id){
     return db('classes as c')
     .join('reservations as r', 'r.classId', 'c.id')
     .join('users as u', 'u.id', 'r.userId')
-    .select('c.id', 'c.type', 'c.date', 'c.startTime', 'c.location', 'c.intensityLevel', 'c.duration', 'c.maxAttendees', 'c.registeredAttendees')
+    .select('c.id', 'c.type', 'c.date', 'c.startTime', 'c.location', 'c.intensityLevel', 'c.duration', 'c.maxClassSize', 'c.registeredAttendees')
     .where({'r.userId': id})
 }
 
@@ -79,16 +84,18 @@ async function addAttendee(reservation) {
     let info = await db('classes').where({id: reservation.classId}).select('registeredAttendees', 'maxClassSize').first();
     if(info.maxClassSize > info.registeredAttendees){
         await db('classes').where({id: reservation.classId}).update({registeredAttendees: info.registeredAttendees + 1})
-        return await db('reservations').insert(reservation).returning('id').first();
+        let id = await db('reservations').insert(reservation).returning('id');
+        return [id]
     } else {
         return null
     }
 }
 
-async function removeAttendee(id) {
-    let reservationtodelete = await db('reservations').where({id}).first()
-    let info = await db('classes').where({id: reservationtodelete.classId}).select('registeredAttendees').first()
+async function removeAttendee(reservation) {
+    let reservationId = await db('reservations').where({userId: reservation.userId, classId: reservation.classId}).select('id').first();
+    //let reservationtodelete = await db('reservations').where({id: reservationId}).first()
+    let info = await db('classes').where({id: reservation.classId}).select('registeredAttendees').first()
     await db('classes').where({id: reservation.classId}).update({registeredAttendees: info.registeredAttendees - 1})
-    return await db('reservations').where({id}).delete()
+    return await db('reservations').where({id: reservationId.id}).delete()
 }
 
