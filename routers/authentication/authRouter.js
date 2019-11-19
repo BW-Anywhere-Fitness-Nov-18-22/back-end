@@ -3,9 +3,10 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../../helpers/dbModel');
 const { generateToken } = require('../../helpers/tokenize');
+const {validateAuthBody} = require('../../helpers/middleware');
 
 
-router.post('/register', async(req, res) => {
+router.post('/register', validateAuthBody, async(req, res) => {
     try {
         const {password} = req.body;
         const hash = bcrypt.hashSync(password, 14);
@@ -26,7 +27,7 @@ router.post('/register', async(req, res) => {
     }
 })
 
-router.post('/login', async(req,res) => {
+router.post('/login', validateAuthBody, async(req,res) => {
     try{
         const {email, password} = req.body;
 
