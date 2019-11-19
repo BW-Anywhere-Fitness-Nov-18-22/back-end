@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require("path");
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -12,8 +13,8 @@ server.use(express.json());
 
 server.use('/api/auth', authRouter);
 
-server.get('/', (req, res) => {
-    res.json('Api works')
-})
+server.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "/index.html"));
+});
 
 module.exports = server;
