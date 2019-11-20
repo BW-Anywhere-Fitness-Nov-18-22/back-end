@@ -27,7 +27,7 @@ router.get('/reservations', async (req, res) => {
    }
 })
 
-router.post('/reservation', validateBody, async (req, res) => {
+router.post('/reservations', validateBody, async (req, res) => {
    const id = req.body.classId;
    try {
       let { registeredAttendees, maxClassSize } = await Users.findClassBy({ id }).first();
@@ -47,7 +47,7 @@ router.post('/reservation', validateBody, async (req, res) => {
    }
 })
 
-router.delete('/reservation/:classId', async (req, res) => {
+router.delete('/reservations/:classId', async (req, res) => {
    const id = req.params.classId;
    try {
       let { registeredAttendees } = await Users.findClassBy({ id }).first();
