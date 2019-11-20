@@ -21,5 +21,6 @@ module.exports = {
    entryRemoved: function (value) {
       return `${value} has been successfully removed from your list`
    },
+   limitReached: 'Maximum class size reached',
    mailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 }

@@ -57,7 +57,7 @@ module.exports = {
         req.decodedToken.role === 'instructor' ? next() : res.status(401).json({ message: v.noAccess });
     },
 
-    isClient: function (req, res, next) {;
+    isClient: function (req, res, next) {
         req.decodedToken.role === 'client' ? next() : res.status(401).json({ message: v.noAccess });
     }
 }
