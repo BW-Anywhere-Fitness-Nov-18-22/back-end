@@ -10,7 +10,7 @@ module.exports = {
         if (Object.keys(req.body).length !== 0 && req.body.constructor === Object) {
             next();
         } else {
-            res.status(400).json({ message: v.noUserData });
+            res.status(400).json({ message: v.noBodyData });
         }
     },
 
@@ -51,5 +51,13 @@ module.exports = {
         } else {
             res.status(400).json({ message: v.supplyToken });
         };
+    },
+
+    isInstructor: function (req, res, next) {
+        req.decodedToken.role === 'instructor' ? next() : res.status(401).json({ message: v.noAccess });
+    },
+
+    isClient: function (req, res, next) {
+        req.decodedToken.role === 'client' ? next() : res.status(401).json({ message: v.noAccess });
     }
 }
