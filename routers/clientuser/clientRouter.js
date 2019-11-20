@@ -6,6 +6,11 @@ const { validateBody } = require('../../helpers/middleware');
 router.get('/class', async (req, res) => {
    try {
       const classes = await Users.findClass();
+      classes.forEach(classe => {
+         classe.instructorName = classe.firstName + " " + classe.lastName;
+         delete classe.firstName;
+         delete classe.lastName;
+      })
       res.status(200).json(classes)
    } catch (error) {
       res.status(500).json({ message: v.errorMessage, error: error.message })
