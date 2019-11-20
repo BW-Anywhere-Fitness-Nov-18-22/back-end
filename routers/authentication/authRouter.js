@@ -3,51 +3,33 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../../helpers/dbModel');
 const { generateToken } = require('../../helpers/tokenize');
-const {validateAuthBody} = require('../../helpers/middleware');
+const { errorMessage, regWelcome, loginWelcome } = require('../../helpers/variables')
 
-
-router.post('/register', validateAuthBody, async(req, res) => {
+router.post('/register', async (req, res) => {
+    const { password } = req.body;
+    const hash = bcrypt.hashSync(password, 14);
+    req.body.password = hash;
     try {
-        const {password} = req.body;
-        const hash = bcrypt.hashSync(password, 14);
-        req.body.password = hash;
-
-        let user = await Users.addUser(req.body);
+        const user = await Users.addUser(req.body);
         const token = await generateToken(user);
-        user = {
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            role: user.role
-            }
-        res.status(201).json({message: 'Welcome!!!!', token, user })
-    } catch (error) {
-        res.status(500).json({errorMessage: error.message});
+        delete user.password;
+        res.status(201).json({ message: regWelcome(user.firstName), token, user })
     }
-})
+    catch (error) {
+        res.status(500).json({ message: errorMessage, error: error.message });
+    };
+});
 
-router.post('/login', validateAuthBody, async(req,res) => {
-    try{
-        const {email, password} = req.body;
-
-        let user = await Users.findUserBy({email})
-        if(user && bcrypt.compareSync(password, user.password)){
-            const token = await generateToken(user)
-            user = {
-                id: user.id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                role: user.role
-                }
-            res.status(201).json({message: 'Welcome!!!!', token, user })
-        }
+router.post('/login', (req, res) => {
+    try {
+        const token = generateToken(req.user);
+        const user = req.user;
+        delete user.password;
+        res.status(200).json({ message: loginWelcome(user.firstName), token, user })
     }
-    catch (error){
-        res.status(500).json({errorMessage: error.message});
-    }  
-
+    catch (error) {
+        res.status(500).json({ errorMessage: error.message });
+    }
 })
 
 module.exports = router;
