@@ -36,7 +36,9 @@ module.exports = {
             .delete()
     },
     findClass: function () {
-        return db('classes')
+        return db('classes as c')
+            .leftJoin('users as u', 'c.instructorId', 'u.id')
+            .select('c.id', 'type', 'date', 'startTime', 'duration', 'intensityLevel', 'location', 'registeredAttendees', 'maxClassSize', 'firstName', 'lastName')
     },
     findClassBy: function (filter) {
         return db('classes')
