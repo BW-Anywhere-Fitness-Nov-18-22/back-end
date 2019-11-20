@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable('reservations', table => {
-    table.increments();
+    table.primary(['userId', 'classId']);
     table.integer('userId').unsigned().notNullable()
       .references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE');
     table.integer('classId').unsigned().notNullable()
