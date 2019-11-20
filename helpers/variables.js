@@ -11,13 +11,15 @@ module.exports = {
    alreadyInUse: 'Email already in use',
    invalid: 'Oops! Invalid Credentials',
    missingFields: 'You are missing some required fields!',
-   noUserData: 'Please supply user data!',
+   noBodyData: 'Please supply data in the request body!',
    tokenInvalid: 'Token validation failed!',
    supplyToken: 'Please supply token!',
    invalidEmail: 'Not a valid email address format',
+   noAccess: 'You are not authorised to access or modify this information',
    newEntry: 'New entry successfully created!',
-   entryRemoved: function (role) {
-      return `${role} has been successfully removed from your list`
+   updatedEntry: 'Entry successfully updated!',
+   entryRemoved: function (value) {
+      return `${value} has been successfully removed from your list`
    },
    mailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 }
