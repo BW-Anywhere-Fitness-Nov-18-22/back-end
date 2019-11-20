@@ -24,7 +24,7 @@ router.post('/class', validateBody, async (req, res) => {
    }
 })
 
-router.put('/class/:id', async (req, res) => {
+router.put('/class/:id', validateBody, async (req, res) => {
    try {
       const id = req.params.id;
       const { instructorId } = await Users.findClassBy({ id }).first();
