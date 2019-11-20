@@ -21,7 +21,6 @@ async function addUser(user) {
         .then(([id]) => {
             return findUserBy({ id });
         });
-
 }
 
 function findUserBy(filter) {
