@@ -5,12 +5,12 @@ exports.up = function (knex) {
     table.string('type').notNullable();
     table.date('date').notNullable();
     table.time('startTime').notNullable();
-    table.integer('duration').notNullable();
+    table.integer('duration').unsigned().notNullable();
     table.string('intensityLevel').notNullable();
     table.string('location').notNullable();
     table.string('description', 256).notNullable();
-    table.integer('registeredAttendees').defaultTo(0);
-    table.integer('maxClassSize').notNullable();
+    table.integer('registeredAttendees').unsigned().defaultTo(0);
+    table.integer('maxClassSize').unsigned().notNullable();
     table.integer('instructorId').unsigned().notNullable()
       .references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE');
   })
