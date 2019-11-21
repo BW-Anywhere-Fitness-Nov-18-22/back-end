@@ -4,7 +4,7 @@
   "description": "to be fixed later",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --watchAll",
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose",
     "start": "node index.js",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest"
@@ -21,7 +21,7 @@
     "buildweek",
     "anywhere"
   ],
-  "author": "Oladimeji Lawal-Are, David Kuseh, Sandrava Philips, Oluwatola Olufemi",
+  "author": "Josemaria Nriagu, Oladimeji Lawal-Are, David Kuseh, Sandrava Philips, Oluwatola Olufemi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end/issues"

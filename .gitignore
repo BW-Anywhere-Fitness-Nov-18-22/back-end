@@ -65,3 +65,6 @@ typings/
 
 # git coauthors
 .git-coauthors
+
+# sqlite db3 files
+*.db3
