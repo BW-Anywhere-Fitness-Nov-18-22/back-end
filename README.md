@@ -52,6 +52,7 @@ type
 date
 startTime
 duration
+description
 intensityLevel
 location
 maxClassSize
