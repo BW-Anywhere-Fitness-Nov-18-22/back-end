@@ -1,58 +1,36 @@
-const db = require("../../config/dbConfig");
-const Classes = require("./clientRouter");
-const Users = require("../../helpers/dbModel");
+const request = require("supertest");
+const server = require("../../api/server");
 
-beforeEach(async () => {
-  await db("users").truncate();
-});
-describe("Users", () => {
- 
-
-  //     describe('Add new class', () => {
-  //         it('Should be empty', async () => {
-  //             let users = await db('classes');
-  //             expect(users).toHaveLength(0);
-  //         })
-  //     });
-  // });
-  describe("User model", () => {
-    describe("insert function", () => {
-      let users;
-      test("should insert a user", async () => {
-        await Users.addUser({
-          firstName: "Femi",
-          lastName: "Olu",
-          email: "asadadf@gmail.com",
-          password: "abc123",
-          role: "Instructor"
+describe("Client Routes", () => {
+  describe("Fetch created classes from end points", () => {
+    it("Should return 400", () => {
+      return request(server)
+        .get("/api/client/class")
+        .then(res => {
+          expect(res.status).toBe(400);
         });
-        await Users.addUser({
-          firstName: "Tola",
-          lastName: "Fornicator",
-          email: "augtvuyghb@gmail.com",
-          password: "abc123",
-          role: "Instructor"
-        });
-        users = await db("users");
-        expect(users).toHaveLength(2);
-        expect(users[0]).toHaveProperty("role");
-        expect(users[0].id).toBe(1);
-        expect(users[0].firstName).toBe("Femi");
-        await Users.addUser({
-          firstName: "Bola",
-          lastName: "Adulterer",
-          email: "almlkjom@gmail.com",
-          password: "abc123",
-          role: "Instructor"
-        });
-        users = await db("users");
-        expect(users).toHaveLength(3);
-      });
     });
   });
-  describe("User model", () => {
-    test("should be defined", () => {
-      expect(Users).toBeDefined();
+
+  describe("Fetch reservations from endpoint", () => {
+    it("Should return 400", () => {
+      return request(server)
+        .get("/api/client/reservations")
+        .then(res => {
+          expect(res.status).toBe(400);
+        });
+    });
+  });
+
+  describe("register reservations", () => {
+    it("middleware working okay", () => {
+      return request(server)
+        .post("/api/client/reservations")
+        .expect(400)
+        .expect({ message: "Please supply token!" });
     });
   });
 });
+
+
+
