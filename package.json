@@ -15,9 +15,6 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end.git"
