@@ -38,7 +38,7 @@ module.exports = {
     findClass: function () {
         return db('classes as c')
             .leftJoin('users as u', 'c.instructorId', 'u.id')
-            .select('c.id', 'type', 'date', 'startTime', 'duration', 'intensityLevel', 'location', 'registeredAttendees', 'maxClassSize', 'firstName', 'lastName')
+            .select('c.id', 'type', 'date', 'startTime', 'duration', 'intensityLevel', 'location', 'registeredAttendees', 'maxClassSize', 'firstName', 'lastName', 'description')
     },
     findClassBy: function (filter) {
         return db('classes')
@@ -57,7 +57,7 @@ module.exports = {
         return db('reservations as r')
             .leftJoin('classes as c', 'r.classId', 'c.id')
             .leftJoin('users as u', 'c.instructorId', 'u.id')
-            .select('classId', 'type', 'date', 'startTime', 'duration', 'intensityLevel', 'location', 'registeredAttendees', 'maxClassSize', 'firstName', 'lastName')
+            .select('classId', 'type', 'date', 'startTime', 'duration', 'intensityLevel', 'location', 'registeredAttendees', 'maxClassSize', 'firstName', 'lastName', 'description')
             .where('r.userId', id)
     },
     deleteReservation: function (reservation) {
