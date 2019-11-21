@@ -9,6 +9,9 @@
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BW-Anywhere-Fitness-Nov-18-22/back-end.git"
@@ -33,7 +36,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.2",
     "pg": "^7.12.1",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
