@@ -12,6 +12,9 @@
     "migratetest": "knex migrate:latest --env=testing",
     "rollbacktest": "knex migrate:rollback --env=testing"
   },
+  "engines": {
+    "node": "11.0.0"
+  },
   "jest": {
     "testEnvironment": "node"
   },
