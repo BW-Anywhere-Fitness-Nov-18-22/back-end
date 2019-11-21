@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.integer('duration').notNullable();
     table.string('intensityLevel').notNullable();
     table.string('location').notNullable();
+    table.string('description', 256).notNullable();
     table.integer('registeredAttendees').defaultTo(0);
     table.integer('maxClassSize').notNullable();
     table.integer('instructorId').unsigned().notNullable()

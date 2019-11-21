@@ -4,7 +4,7 @@
   "description": "to be fixed later",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose",
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --coverage",
     "start": "node index.js",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
