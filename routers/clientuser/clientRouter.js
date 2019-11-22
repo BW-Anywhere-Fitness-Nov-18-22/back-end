@@ -58,7 +58,7 @@ router.delete('/reservations/:classId', async (req, res) => {
       let { registeredAttendees } = await Users.findClassBy({ id }).first();
       await Users.deleteReservation({ classId: req.params.classId, userId: req.decodedToken.subject });
       let changes = {
-         registeredAttendees: registeredAttendees - 1
+         registeredAttendees: registeredAttendees === 0 ? 0 : registeredAttendees - 1 
       }
       await Users.editClass(req.params.classId, changes);
       res.status(200).json({ message: v.entryRemoved('reservation') })
