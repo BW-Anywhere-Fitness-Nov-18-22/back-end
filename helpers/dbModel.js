@@ -48,7 +48,7 @@ module.exports = {
         let id = reservation.classId;
         return db('reservations')
             .insert(reservation)
-            .returning('id')
+            .returning(['userId', 'classId'])
             .then(() => {
                 return this.findClassBy({ id })
             })

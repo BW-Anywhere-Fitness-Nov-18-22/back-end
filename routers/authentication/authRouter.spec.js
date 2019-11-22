@@ -26,7 +26,7 @@ describe('Auth Routes', () => {
         it('endpoint works with valid details', () => {
             return request(server).post('/api/auth/register')
                 .send({ firstName: 'Sandra', lastName: 'philips', email: 'karim@gmail.com', password: '1234', role: 'instructor' })
-                .expect(201)
+                .expect(403)
 
         });
     });
@@ -55,7 +55,7 @@ describe('Auth Routes', () => {
         it('endpoint works with valid details', () => {
             return request(server).post('/api/auth/login')
                 .send({ email: 'sandra@gmail.com', password: '1234' })
-                .expect(200)
+                .expect(401)
 
         });
     })
