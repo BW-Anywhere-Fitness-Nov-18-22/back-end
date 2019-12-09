@@ -34,7 +34,7 @@ module.exports = {
             (user && bcrypt.compareSync(password, user.password)) ? next() : res.status(401).json({ message: v.invalid });
         } else {
             res.status(400).json({ message: v.missingFields });
-        };
+        }
     },
 
     restricted: function (req, res, next) {
@@ -50,7 +50,7 @@ module.exports = {
             })
         } else {
             res.status(400).json({ message: v.supplyToken });
-        };
+        }
     },
 
     isInstructor: function (req, res, next) {
